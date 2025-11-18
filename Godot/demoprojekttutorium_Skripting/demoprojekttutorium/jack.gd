@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+class_name Jack
+
 @onready var pcam: PhantomCamera3D
 
 enum{IDLE, RUN, JUMP, FALL, LAND}
@@ -26,6 +28,15 @@ var last_dir: Vector3
 
 var cam_rotation
 
+var collected_hearts : int = 0 :
+	set(value):
+		collected_hearts = value
+		heart_collected.emit(value)
+	get():
+		return collected_hearts
+
+signal heart_collected(count : int)
+
 func _ready() -> void:
 	pcam = owner.get_node("%PhantomCamera3D")
 	cam_rotation = pcam.get_third_person_rotation_degrees()
@@ -33,7 +44,6 @@ func _ready() -> void:
 	
 	if pcam.get_follow_mode() == pcam.FollowMode.THIRD_PERSON:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
 	
 func _physics_process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_ESCAPE):
@@ -144,6 +154,5 @@ func set_anim(delta):
 			falling_val = lerpf(falling_val, 0, blendspeed * delta)
 			landing_val = lerpf(landing_val, 0, blendspeed * delta)
 			
-	
-			
-		
+func on_heart_collected() -> void:
+	collected_hearts += 1

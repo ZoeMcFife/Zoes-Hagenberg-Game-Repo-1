@@ -1,14 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://cdq0tj5y0oo7r"]
+[gd_scene load_steps=3 format=3 uid="uid://cdq0tj5y0oo7r"]
 
+[ext_resource type="Script" uid="uid://coct1gemcnpfn" path="res://Demo_Skripting/HeartUI.gd" id="1_t6lev"]
 [ext_resource type="Texture2D" uid="uid://cndn78n2h2tym" path="res://Heart_UISprite/HeartSprite.png" id="2_g6l6n"]
 
-[node name="Level_UI" type="Control"]
+[node name="Level_UI" type="Control" node_paths=PackedStringArray("hearts")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_t6lev")
+hearts = [NodePath("HBoxContainer/Heart"), NodePath("HBoxContainer/Heart2"), NodePath("HBoxContainer/Heart3")]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
@@ -16,16 +19,19 @@ offset_right = 575.0
 offset_bottom = 186.0
 
 [node name="Heart" type="TextureRect" parent="HBoxContainer"]
+modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 texture = ExtResource("2_g6l6n")
 expand_mode = 3
 
 [node name="Heart2" type="TextureRect" parent="HBoxContainer"]
+modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 texture = ExtResource("2_g6l6n")
 expand_mode = 3
 
 [node name="Heart3" type="TextureRect" parent="HBoxContainer"]
+modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 texture = ExtResource("2_g6l6n")
 expand_mode = 3

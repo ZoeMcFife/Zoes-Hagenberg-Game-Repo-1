@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://baupgweuuopap"]
+[gd_scene load_steps=4 format=3 uid="uid://baupgweuuopap"]
 
 [ext_resource type="PackedScene" uid="uid://0qbj53lvcntb" path="res://Heart.glb" id="1_cixvg"]
+[ext_resource type="Script" uid="uid://bsaoebq6lfyei" path="res://Demo_Skripting/Heart.gd" id="2_5ysyu"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7p8dj"]
 radius = 0.718879
 
-[node name="Heart" instance=ExtResource("1_cixvg")]
+[node name="Heart" node_paths=PackedStringArray("heart_area") instance=ExtResource("1_cixvg")]
+script = ExtResource("2_5ysyu")
+heart_area = NodePath("HeartArea3D")
 
 [node name="Plane" parent="." index="0"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
