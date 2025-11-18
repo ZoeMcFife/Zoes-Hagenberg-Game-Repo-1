@@ -3,30 +3,60 @@ using System;
 
 public partial class FrameCounter : Control
 {
+
+	private bool _runFrameCounter = true;
+	private int _frameCounter = 0;
+
+	private int _FrameCounter
+	{
+		get => _frameCounter;
+		set
+		{
+			_frameCounter = value;
+			_label.Text = _frameCounter.ToString();
+		}
+	}
+	
+	[Export]
 	private Label _label;
+	
+	[Export]
 	private Button _stopButton;
+	
+	[Export]
 	private Button _resetButton;
-	private bool runFrameCounter = true;
-	private int frame_counter = 0;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		//TODO: Get all our components like previously, we can no longer drag and drop them in here, we have to get our nodes through code via GetNode function
-
+		_stopButton.Pressed += _OnStopPressed;
+		_resetButton.Pressed += _OnResetPressed;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (runFrameCounter)
-		{
-			frame_counter++;
-			_label.Text = frame_counter.ToString();
-		}
+		if (!_runFrameCounter) return;
+		
+		_FrameCounter++;
+		_label.Text = _FrameCounter.ToString();
 	}
-		//TODO: Implement the stop and reset buttons, but now in C# how do we do this? We can no longer connect signals from editor
-	
+
+	private void _OnStopPressed()
+	{
+		_runFrameCounter = !_runFrameCounter;
+	}
+
+	private void _OnResetPressed()
+	{
+		_FrameCounter = 0; 
+	}
+
+	public override void _ExitTree()
+	{
+		_stopButton.Pressed -= _OnStopPressed;
+		_resetButton.Pressed -= _OnResetPressed;
+	}
 }
 	
 

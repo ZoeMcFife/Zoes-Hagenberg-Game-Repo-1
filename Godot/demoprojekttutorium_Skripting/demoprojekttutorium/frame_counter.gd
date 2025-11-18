@@ -17,16 +17,16 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+#func _process(delta: float) -> void:
+	#if run_frame_counter:
+		#frame_count += 1
+		#print(frame_count)
+		
+func _physics_process(delta: float) -> void:
 	if run_frame_counter:
 		frame_count += 1
 		print(frame_count)
 		
-#func _physics_process(delta: float) -> void:
-	#if run_frame_counter:
-		#frame_count += 1
-		#print(frame_count)
-		#
 
 	
 
