@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://baupgweuuopap"]
+
+[ext_resource type="PackedScene" uid="uid://0qbj53lvcntb" path="res://Heart.glb" id="1_cixvg"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7p8dj"]
+radius = 0.718879
+
+[node name="Heart" instance=ExtResource("1_cixvg")]
+
+[node name="Plane" parent="." index="0"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="1"]
+light_color = Color(0.962332, 0.525431, 0.709185, 1)
+light_energy = 10.0
+shadow_enabled = true
+distance_fade_begin = 38.75
+omni_range = 0.935805
+omni_shadow_mode = 0
+
+[node name="HeartArea3D" type="Area3D" parent="." index="2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HeartArea3D" index="0"]
+shape = SubResource("SphereShape3D_7p8dj")
+
+[connection signal="body_entered" from="HeartArea3D" to="." method="_on_heart_area_3d_body_entered"]

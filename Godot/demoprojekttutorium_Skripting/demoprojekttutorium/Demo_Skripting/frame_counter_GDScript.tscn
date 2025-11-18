@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=3 uid="uid://cv7oqt8q0eaqg"]
+
+[ext_resource type="Theme" uid="uid://m5ek0myi6ywo" path="res://Demo_Skripting/UI_Theme.tres" id="2_7tb6x"]
+
+[node name="FrameCounter_GDScript" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -129.0
+offset_top = -376.0
+offset_right = 129.0
+offset_bottom = -171.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_7tb6x")
+text = "_ _ _ _"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -560.5
+offset_top = 13.0
+offset_right = 560.5
+offset_bottom = 213.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_7tb6x")
+
+[node name="Stop" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_7tb6x")
+text = "Stop Counter"
+
+[node name="Reset" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_7tb6x")
+text = "ResetCounter"
+
+[connection signal="pressed" from="HBoxContainer/Stop" to="." method="_on_stop_pressed"]
+[connection signal="pressed" from="HBoxContainer/Reset" to="." method="_on_reset_pressed"]
